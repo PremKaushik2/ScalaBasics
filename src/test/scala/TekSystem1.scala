@@ -27,17 +27,17 @@ object TekSystem1 {
         System.exit(1)
       } else {
         var possible = true
-        var m = 0
+        var currentStateOfTrainInTermsOfCapacity = 0
         for(i <- 0 until arrBuffer.size) {
           val (passengerVacatedTheTrain,passengerEntered,passengerInWaiting) = arrBuffer(i.toInt)
           // check for left
-          if(passengerVacatedTheTrain < 0 || passengerVacatedTheTrain > m) possible = false
-          m -= passengerVacatedTheTrain
-          if(passengerEntered < 0 || passengerEntered > totalCapacityOfTrain - m) possible = false
-          m += passengerEntered
-          if(passengerInWaiting < 0 || (totalCapacityOfTrain > m && passengerInWaiting > 0)) possible = false
+          if(passengerVacatedTheTrain < 0 || passengerVacatedTheTrain > currentStateOfTrainInTermsOfCapacity) possible = false
+          currentStateOfTrainInTermsOfCapacity -= passengerVacatedTheTrain
+          if(passengerEntered < 0 || passengerEntered > totalCapacityOfTrain - currentStateOfTrainInTermsOfCapacity) possible = false
+          currentStateOfTrainInTermsOfCapacity += passengerEntered
+          if(passengerInWaiting < 0 || (totalCapacityOfTrain > currentStateOfTrainInTermsOfCapacity && passengerInWaiting > 0)) possible = false
         }
-        if(possible && m == 0) {
+        if(possible && currentStateOfTrainInTermsOfCapacity == 0) {
           Console.out.println("possible")
         } else {
           Console.out.println("impossible")
