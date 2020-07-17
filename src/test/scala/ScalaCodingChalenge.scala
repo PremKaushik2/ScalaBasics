@@ -110,7 +110,7 @@ Seq(9, 9, 9) => Seq(1, 0, 0, 0)*/
     }
   */
 
-
+//Q6:
    import cats.FlatMap
   import cats.implicits._
   trait MyAlg[F[_]] {
