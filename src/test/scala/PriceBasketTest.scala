@@ -47,8 +47,12 @@ object Item {
 
 
 
-//And if you want to perform some action on these constants you can define that action in that trait
-// again we have enum Offer here which holds constant values Like Percentage(discountFactor, item) and HalfPrice(halvedItem, _)
+/*
+Here s we can see the state is represented by the Percentage case class nad the HalfPrice case class
+But if we want to perform actions on pattern match of these pojos so we will always use the sealed trait in the same file scope
+Like this we have done this also here we wanted a Seq of offers so we extended the Offer trait to thse case clases bcz
+Seq[Offer] we want to be put inside the Seq
+ */
 sealed trait Offer {
   def discountedAmount: Double = this match {
     case Percentage(discountFactor, item)   => discountFactor * item.price

@@ -20,7 +20,7 @@ object BasicComputation extends App {
 
   val sparksession: SparkSession = SparkSession.builder.master("local").config(sparkConfiguration).getOrCreate()
   val sparkContext = sparksession.sparkContext
-  val ordersrdd = sparkContext.textFile("D:/Spark_VM/data-set/data/retail_db/orders", 2)
+  val ordersrdd = sparkContext.textFile("C:\\prem\\prem\\Data\\Spark_VM\\data-set\\data\\retail_db\\orders", 2)
 
   ordersrdd.take(5).foreach(println)
   val filteredorder = ordersrdd.filter(order => order.split(",")(3) == "COMPLETE")

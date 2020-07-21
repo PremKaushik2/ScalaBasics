@@ -45,7 +45,9 @@ object HofAndCurries extends App {
    * All that the theory of currying means is that a function that takes multiple arguments
    *  can be translated into a series of function calls in a cascading manner
    *  that each take a single argument.
-   * In pseudocode, this means that an expression like this:
+   * Hence output of this operation will be a curried function
+   * Here in Recursion each stack frame will return function when recursion traces back
+   * In pseudocode , this means that an expression like this:
    * result = f(x)(y)(z)
    * or like this  x => y => fx(x, y)
    *
