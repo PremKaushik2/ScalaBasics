@@ -22,6 +22,7 @@ object AdvancedPAtternMatching  extends App {
   val bob= new Person("bob",33)
 
   val greeting: String = bob match {
+      //Here compiler is looking for unapply method with name Persoon with return type Option[(String,Int)]
     case Person(name,age) => s"Hi my name is $name and my age is $age"
   }
 
@@ -63,4 +64,22 @@ object AdvancedPAtternMatching  extends App {
   }
   println(matchpattern)
   println(matchpattern1)
+
+  object even1{
+
+    def unapply(arg: Int): Boolean = arg%2==0
+  }
+
+  object singledigit1{
+    def unapply(arg: Int): Boolean = arg > -10 && arg<10
+  }
+// Here we have removed the argument parameter from pattern match because here return of unapply method
+  // is Boolean not the Option[Boolean]
+  val matchWithOutOption=48
+  val matchable2: String = matchWithOutOption match {
+    case singledigit1() => s" is single Digit"
+    case even1() => s" is even number"
+    case _ => "no prpoery"
+  }
+  println(matchable2)
 }
